@@ -1,0 +1,23 @@
+{
+  "name": "wiki-legal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run lite ",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronaldsg20/wikiLegal.git"
+  },
+  "author": "Ronald Sarmiento",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ronaldsg20/wikiLegal/issues"
+  },
+  "homepage": "https://github.com/ronaldsg20/wikiLegal#readme",
+  "devDependencies": {
+    "lite-server": "^2.2.0"
+  }
+}
