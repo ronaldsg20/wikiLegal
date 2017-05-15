@@ -1,23 +1,20 @@
 {
-  "name": "wiki-legal",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "wikilegal2",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "npm run lite ",
-    "lite": "lite-server"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ronaldsg20/wikiLegal.git"
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "jade": "~1.11.0",
+    "morgan": "~1.8.1",
+    "serve-favicon": "~2.4.2"
   },
-  "author": "Ronald Sarmiento",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ronaldsg20/wikiLegal/issues"
-  },
-  "homepage": "https://github.com/ronaldsg20/wikiLegal#readme",
   "devDependencies": {
-    "lite-server": "^2.2.0"
+    "monk": "^4.0.0"
   }
 }
