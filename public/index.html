@@ -17,15 +17,15 @@
 	</header>
 	<div class="row">
 		<div class="container">
-		    <form >
+		    <form action="/login" method="post">
 				<h2 id="header">Iniciar Sesión</h2>
 			  	<div class="form-group" id="forms">
-			    	<label for="exampleInputEmail2">Email</label>
-			    	<input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com" required>
+			    	<label for="userName">Usuario</label>
+			    	<input type="text" class="form-control" id="userName" name="userName" placeholder="jane.doe@example.com" required>
 		  	  	</div>
 		  	  	<div class="form-group" id="forms">
-			    	<label for="exampleInputPassword">contraseña</label>
-			    	<input type="Password" class="form-control" id="exampleInputEmail2" placeholder="contraseña" required>
+			    	<label for="password">contraseña</label>
+			    	<input type="Password" class="form-control" id="password" name="password" placeholder="contraseña" required>
 		  	  	</div>
 		  		<div class="button">
 		  			<button type="submit" class="btn btn-primary" id="button">Iniciar Sesión</button>

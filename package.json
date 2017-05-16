@@ -15,6 +15,7 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
+    "mongoose": "^4.9.9",
     "monk": "^4.0.0"
   }
 }
