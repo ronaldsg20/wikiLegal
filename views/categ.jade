@@ -44,32 +44,27 @@ html(lang='en')
         .col-lg-8
           // Blog Post
           // Title
-          h1 Haz tu pregunta  #{ user}
-        
-          hr
-          // Post Content
-          form.form-group(action="/question" method="post")
-            label(for='fname')
-            input#fname(type='text', name='question', placeholder='¿Cúal es tu pregunta sobre derecho?')
-            br 
-            br
-            select.form-control(name="category")
-              each cat, i in categoryList
-                option(value="#{cat.cat_id}") #{cat.name}
-            button.btn.btn-primary(type="submit") Preguntar
-          br
+          h1   #{ category}
+          // Author
+          
+          
         // Blog Sidebar Widgets Column
         .col-md-4
           // Blog Search Well
-          
-          .well
-            h4 Categorias
-            .row
-              .col-lg-6
-                ul.list-unstyled
-                  each cat, i in categoryList
-                    li
-                      a(href='category/#{cat.cat_id}')=cat.name
+        .container
+          .row
+            .well
+              h4 Preguntas
+              .row
+                .col-lg-6
+                  ul.list-unstyled
+                    each question, i in QuestionList
+                      li
+                        .panel.panel-primary
+                          .panel-heading
+                            a(href='/quest/#{question.categ_id}')=question.user_id 
+                          .panel-content #{question.description}
+                      
                   
             // /.row
           // Side Widget Well

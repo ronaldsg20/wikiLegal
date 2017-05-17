@@ -1,6 +1,18 @@
-extends layout
-
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+doctype html
+head
+  title Iniciar Sesión
+  link(rel='stylesheet', type='text/css', href='stylesheets/log.css')
+  link(rel='stylesheet', type='text/css', href='stylesheets/float-rid.css')
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet')
+header
+  .row
+    .col-12
+      h1 WikiLegal
+      a(href='signUp.html')
+        p#logIn Registarse
+.row
+  .container
+    block Ha ocurrido un error
+      h1= message
+      h2= error.status
+      pre #{error.stack}

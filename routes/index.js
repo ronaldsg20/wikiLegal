@@ -19,23 +19,31 @@ router.get('/dash', function(req, res) {
     var db = req.db;
     var sess = req.session;
     var user = sess.userName;
-    var collection = db.get('Category');
-    collection.find({},{},function(e,docs){
-        res.render('dash', {
-            "categoryList" : docs,
-            "user":user
-        });
-    });
+    if(user){
+      var collection = db.get('Category');
+      collection.find({},{},function(e,docs){
+          res.render('dash', {
+              "categoryList" : docs,
+              "user":user
+          });
+      });
+    }else{
+      var err = new Error('Session expired - please login');
+      err.status = 404;
+      res.render('error',{"error":err});
+    }
+
 });
 router.get('/category/:id', function(req, res) {
     var db = req.db;
     var category = db.get('Category');
     var question = db.get('Question');
-    var categInfo=[];
-    category.find({cat_id:parseInt(req.params.id)},{},function(e,docs){
-        categInfo=docs;
-        res.render('category', {
-            "category" : categInfo
+    var sess = req.session;
+    var userName = req.userName;
+    var id = req.params.id;
+    question.find({categ_id:parseInt(id)},{},function(e,docs){
+        res.render('categ', {
+            "QuestionList" : docs
         });
     });
 });
@@ -89,8 +97,55 @@ router.post('/register',function(req, res){
 
         }
     });
+  });
 
-});
+  router.post("/question",function(req,res){
+    var sess = req.session;
+    var db = req.db;
+    var userName = sess.userName;
+
+    var question = req.body.question;
+    var category = req.body.category;
+    if(userName){
+      // there are an active session
+      var questionCollect = db.get("Question");
+      var index=0;
+      questionCollect.find({},{},function(err,docs){
+        questionCollect.insert({
+          "id":docs.length+1,
+          "categ_id":parseInt(category),
+          "user_id":userName,
+          "description":question
+        },function(err,doc){
+          if(err){res.send("an error has ocurred");}
+        });
+        res.redirect("/category/"+category);
+       });// strongly ineficcent
+
+
+    }else{
+      var err = new Error('Session expired - please login');
+      err.status = 404;
+      res.render('error',{"error":err});
+    }
+
+  });
+
+  /*router.post("/categ",function(){
+    var sess = req.session;
+    var db = req.db;
+    var userName = sess.userName;
+    if(userName){
+      var answerCollect = db.get("Answer");
+      answerCollect.find({question:},{},function(err,docs){
+
+      });
+    }else{
+      var err = new Error('Session expired - please login');
+      err.status = 404;
+      res.render('error',{"error":err});
+    }
+  });*/
 
 
 module.exports = router;
