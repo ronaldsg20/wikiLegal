@@ -12,6 +12,8 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('RonaldAD:UN1234@localhost:27017/wikilegal');
 var app = express();
+// manage session variables
+var session = require('express-session');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +27,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//initialize session object
+app.use(session({secret:"wikilegals3cre7"}));
 
 // Make our db accessible to our router
 app.use(function(req,res,next){

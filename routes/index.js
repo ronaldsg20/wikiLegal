@@ -17,10 +17,13 @@ router.get('/users', function(req, res) {
 
 router.get('/dash', function(req, res) {
     var db = req.db;
+    var sess = req.session;
+    var user = sess.userName;
     var collection = db.get('Category');
     collection.find({},{},function(e,docs){
         res.render('dash', {
-            "categoryList" : docs
+            "categoryList" : docs,
+            "user":user
         });
     });
 });
@@ -40,7 +43,6 @@ router.get('/category/:id', function(req, res) {
 router.post('/register',function(req, res){
   var name = req.body.name;
   var unalUser = req.body.unalUser;
-  var unalCode = req.body.unalCode;
   var psw = req.body.password;
   var psw2 = req.body.pasword2;
   var db = req.db;
@@ -50,7 +52,6 @@ router.post('/register',function(req, res){
     "name":name,
     "userName":unalUser,
     "psw":psw,
-    "UnCode":unalCode,
     "mail":unalUser+"@unal.edu.co"
   },function(err,doc){
       if (err) {
@@ -65,6 +66,8 @@ router.post('/register',function(req, res){
     var userName = req.body.userName;
     var psw = req.body.password;
     var db = req.db;
+    // session variable
+    var sess = req.session;
     // verificar contraseñas iguales
     var collection = db.get("User");
     collection.find({"userName":userName},{"psw":1},function(err,doc){
@@ -72,7 +75,14 @@ router.post('/register',function(req, res){
           res.send("an error has ocurred");
         }else{
           if (psw == doc[0].psw){
-            res.redirect("dash");
+            sess.userName = userName;
+            var category = db.get('Category');
+            category.find({},{},function(e,docs){
+                res.render('dash', {
+                    "categoryList" : docs,
+                    "user":userName
+                });
+            });
           }else{
             res.send("wrong password: try again");
           }

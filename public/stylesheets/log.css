@@ -9,7 +9,7 @@ body{
 
 header{
 	padding: 20px;
-	background:	#3b5998;
+	background:	#275983;
 }
 
 h1{
@@ -30,7 +30,7 @@ p#logIn{
 	margin: 80px auto;
 	height: 280px;
 	width: 500px;
-	
+
 	background-color: #f7f7f7;
 	border-radius: 10px;
 
@@ -38,7 +38,7 @@ p#logIn{
 #header{
 	text-align: center;
 	padding-bottom: 10px;
-	color: #3b5998 ;
+	color: #275983 ;
 }
 #forms{
 	padding-left: 40px;
@@ -84,10 +84,10 @@ p#logIn{
 .logInLink{
 	margin-top: -80px;
 	text-align: center;
-	
+
 }
 #logInLink{
-	color:#3b5998;
+	color:#275983;
 	text-decoration: none;
 	text-decoration: none;
 
